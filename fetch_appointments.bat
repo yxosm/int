@@ -1,0 +1,3 @@
+@echo off
+curl -L -X GET "https://cosaqwjdfwitkrhgppbh.supabase.co/rest/v1/appointments?select=*" -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvc2Fxd2pkZndpdGtyaGdwcGJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTAzMjIxNDAsImV4cCI6MjAyNTg5ODE0MH0.8wxiVg2-YwFDiOJ4W6yBtuTjHxP3vKXlaRPvYBtaawM" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvc2Fxd2pkZndpdGtyaGdwcGJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTAzMjIxNDAsImV4cCI6MjAyNTg5ODE0MH0.8wxiVg2-YwFDiOJ4W6yBtuTjHxP3vKXlaRPvYBtaawM"
+pause

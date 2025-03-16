@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - CarMaster Auto Body</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #4f46e5;
+            --accent-color: #818cf8;
+            --surface-color: rgba(255, 255, 255, 0.95);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: 
+                radial-gradient(circle at 100% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(79, 70, 229, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, #fafafa 0%, #f3f4f6 100%);
+            color: #1f2937;
+            background-attachment: fixed;
+            padding-top: 76px; /* Adjust based on navbar height */
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.25rem;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.15);
+        }
+        
+        .service-card {
+            border-radius: 28px;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(12px);
+            background: var(--surface-color);
+            padding: 2rem !important;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(99, 102, 241, 0.12);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 12px;
+            padding: 8px 24px; /* Reduced padding */
+            font-size: 0.9rem; /* Smaller font size */
+        }
+
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: var(--surface-color) !important;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1030;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.98) !important;
+        }
+
+        .feature-badge {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO-GHL9UpZiSY96FVqaaufmDnpWVmpKFN.png" 
+                     alt="CarMaster Logo" 
+                     height="60">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="reviews.html">Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                            Book Appointment
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Services Section -->
+    <section class="py-5 mt-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="feature-badge mb-2">OUR SERVICES</span>
+                <h1 class="display-4 fw-bold mb-3">Professional Auto Body Services</h1>
+                <p class="lead text-muted">Industry-leading repairs with proven expertise</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Collision Repair -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card p-4 h-100">
+                        <div class="service-icon">
+                            <i class="bi bi-car-front"></i>
+                        </div>
+                        <h3 class="h5 text-center">Collision Repair</h3>
+                        <p class="text-muted text-center">Expert repair for all types of collision damage, ensuring your vehicle is restored to pre-accident condition.</p>
+                    </div>
+                </div>
+
+                <!-- Paint Services -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card p-4 h-100">
+                        <div class="service-icon">
+                            <i class="bi bi-palette"></i>
+                        </div>
+                        <h3 class="h5 text-center">Paint Services</h3>
+                        <p class="text-muted text-center">Professional paint matching and application using premium materials and proven techniques.</p>
+                    </div>
+                </div>
+
+                <!-- Frame Repair -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card p-4 h-100">
+                        <div class="service-icon">
+                            <i class="bi bi-tools"></i>
+                        </div>
+                        <h3 class="h5 text-center">Frame Repair</h3>
+                        <p class="text-muted text-center">Precise frame straightening and structural repairs using professional equipment.</p>
+                    </div>
+                </div>
+
+                <!-- Insurance Claims -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card p-4 h-100">
+                        <div class="service-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h3 class="h5 text-center">Insurance Claims</h3>
+                        <p class="text-muted text-center">Direct insurance billing and dedicated assistance with claims processing for a hassle-free experience.</p>
+                    </div>
+                </div>
+
+                <!-- Rental Assistance -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card p-4 h-100">
+                        <div class="service-icon">
+                            <i class="bi bi-car-front-fill"></i>
+                        </div>
+                        <h3 class="h5 text-center">Rental Assistance</h3>
+                        <p class="text-muted text-center">We help coordinate rental vehicles through your insurance coverage during repairs.</p>
+                    </div>
+                </div>
+
+                <!-- Express Service -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card p-4 h-100">
+                        <div class="service-icon">
+                            <i class="bi bi-lightning"></i>
+                        </div>
+                        <h3 class="h5 text-center">Express Service</h3>
+                        <p class="text-muted text-center">Efficient service for minor repairs and touch-ups, without compromising quality.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center mt-5">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                    Schedule Service
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Modal -->
+    <div class="modal fade" id="appointmentModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">Schedule Service</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-3 me-3">
+                            <i class="bi bi-clock text-primary"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Operating Hours</h6>
+                            <p class="mb-0 small">Mon-Fri: 7 AM–7 PM<br>Sat: 8 AM–4 PM<br>Sun: Closed</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-3 me-3">
+                            <i class="bi bi-telephone text-primary"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Contact</h6>
+                            <p class="mb-0"><strong>(614) 649-1542</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <a href="tel:+16146491542" class="btn btn-primary">Call Now</a>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-light mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO-GHL9UpZiSY96FVqaaufmDnpWVmpKFN.png" 
+                         alt="CarMaster Logo" 
+                         height="60" 
+                         class="mb-4">
+                    <p class="mb-4 text-muted">Modern auto body repair with exceptional service and guaranteed quality.</p>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-6 col-md-4">
+                            <h5 class="mb-4">Contact</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2 text-muted"><i class="bi bi-geo-alt me-2"></i>3803 Sullivant Ave</li>
+                                <li class="mb-2 text-muted"><i class="bi bi-building me-2"></i>Columbus, OH 43228</li>
+                                <li class="mb-2 text-muted"><i class="bi bi-telephone me-2"></i>(614) 649-1542</li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <h5 class="mb-4">Hours</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2 text-muted">Monday - Friday: 7 AM–7 PM</li>
+                                <li class="mb-2 text-muted">Saturday: 8 AM–4 PM</li>
+                                <li class="mb-2 text-muted">Sunday: Closed</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-2">
+                            <h5 class="mb-4">Quick Links</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+                                <li class="mb-2"><a href="services.html" class="text-light text-decoration-none">Services</a></li>
+                                <li class="mb-2"><a href="projects.html" class="text-light text-decoration-none">Projects</a></li>
+                                <li class="mb-2"><a href="reviews.html" class="text-light text-decoration-none">Reviews</a></li>
+                                <li class="mb-2"><a href="about.html" class="text-light text-decoration-none">About</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center text-muted">
+                <p class="mb-0">&copy; 2024 CarMaster. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 10) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
+

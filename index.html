@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarMaster - Professional Auto Body Repair in Columbus, OH</title>
+    <meta name="description" content="CarMaster delivers exceptional auto body repair in Columbus, OH with expert technicians, quality OEM parts, and a commitment to customer satisfaction.">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #4f46e5;
+            --accent-color: #818cf8;
+            --surface-color: rgba(255, 255, 255, 0.95);
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fafafa;
+            padding-top: 76px;
+        }
+
+        /* Recent Projects Banner Styles */
+        .recent-projects-banner {
+            margin-top: 56px;
+            position: relative;
+        }
+
+        .recent-projects-banner .carousel-item {
+            height: 40vh; /* Reduced from 60vh */
+            min-height: 300px; /* Reduced from 400px */
+        }
+
+        .recent-projects-banner .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.08));
+            z-index: 1;
+        }
+
+        .recent-projects-banner .carousel-caption {
+            z-index: 2;
+            bottom: 50%;
+            transform: translateY(50%);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .recent-projects-banner .carousel-control-prev,
+        .recent-projects-banner .carousel-control-next {
+            width: 5%;
+            z-index: 3;
+        }
+
+        .gradient-text {
+            background: linear-gradient(120deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+            transform: rotate(-5deg);
+        }
+        
+        .stars {
+            color: var(--primary-color);
+        }
+        
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: var(--surface-color) !important;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1030;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.98) !important;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 8px 24px; /* Reduced padding */
+            border-radius: 12px;
+            font-size: 0.9rem; /* Smaller font size */
+        }
+
+        .card {
+            border-radius: 16px;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(129, 140, 248, 0.1));
+            padding: 120px 0;
+            margin-top: -56px;
+        }
+
+        .project-card {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .avatar-sm {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 3rem;
+            height: 3rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .carousel-control-prev {
+            left: -4rem;
+        }
+
+        .carousel-control-next {
+            right: -4rem;
+        }
+
+        .carousel-indicators {
+            margin-bottom: 0;
+        }
+
+        .carousel-indicators [data-bs-target] {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+
+        #reviewsCarousel .carousel-item {
+            transition: transform 0.6s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO-GHL9UpZiSY96FVqaaufmDnpWVmpKFN.png" 
+                 alt="CarMaster Logo" 
+                 height="60">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="services.html">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="projects.html">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="reviews.html">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item ms-lg-2">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                        Book Appointment
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <!-- Recent Projects Banner -->
+    <div class="recent-projects-banner">
+        <div id="recentProjectsBanner" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="banner-overlay"></div>
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2248.jpg-NVMVs1FIrXpkEDIL99HkpHQBil8cCZ.jpeg" class="d-block w-100" alt="Recent Project 1">
+                    <div class="carousel-caption">
+                        <h2 class="display-4 fw-bold">Recent Projects</h2>
+                        <p class="lead">Complete Body Restoration</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="banner-overlay"></div>
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2252.jpg-i6LqP7xSbHUhDvFhBpLSkSbTlLaXYa.jpeg" class="d-block w-100" alt="Recent Project 2">
+                    <div class="carousel-caption">
+                        <h2 class="display-4 fw-bold">Recent Projects</h2>
+                        <p class="lead">Precision Panel Repair</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#recentProjectsBanner" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#recentProjectsBanner" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <span class="badge bg-primary bg-opacity-10 text-primary mb-3">Expert Auto Repair</span>
+                    <h1 class="display-4 fw-bold mb-4">Professional Auto Body Repair</h1>
+                    <p class="lead mb-4">Experience excellence in auto body repair. Our skilled technicians and state-of-the-art facility ensure precision repairs and complete customer satisfaction.</p>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                        Schedule Service
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right ms-2" viewBox="0 0 16 16">
+                            <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge bg-primary bg-opacity-10 text-primary mb-2">Our Services</span>
+                <h2 class="display-5 fw-bold mb-3">Expert Auto Body Solutions</h2>
+                <p class="lead text-muted">Professional repairs with quality you can trust</p>
+            </div>
+            <div class="row g-4">
+                <!-- Service cards -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="service-icon">
+                                <i class="bi bi-tools"></i>
+                            </div>
+                            <h3 class="h5">Professional Assessment</h3>
+                            <p class="card-text">Skilled evaluation and detailed repair planning by experienced technicians</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="service-icon">
+                                <i class="bi bi-car-front"></i>
+                            </div>
+                            <h3 class="h5">Rental Service</h3>
+                            <p class="card-text">Free rental car service with easy pickup and drop-off</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="service-icon">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <h3 class="h5">Insurance Support</h3>
+                            <p class="card-text">Direct insurance claims processing and documentation</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="service-icon">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <h3 class="h5">Insurance Assistance</h3>
+                            <p class="card-text">We work directly with insurance companies and help expedite your claim process</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="service-icon">
+                                <i class="bi bi-car-front"></i>
+                            </div>
+                            <h3 class="h5">Free Rental Cars</h3>
+                            <p class="card-text">Complimentary rental car service while your vehicle is being repaired</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="service-icon">
+                                <i class="bi bi-cash-stack"></i>
+                            </div>
+                            <h3 class="h5">Deductible Assistance</h3>
+                            <p class="card-text">Help with deductibles and maximizing your settlement value</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="service-icon">
+                                <i class="bi bi-truck"></i>
+                            </div>
+                            <h3 class="h5">Free Towing</h3>
+                            <p class="card-text">Complimentary towing service for your damaged vehicle</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="service-icon">
+                                <i class="bi bi-clipboard-check"></i>
+                            </div>
+                            <h3 class="h5">Total Loss Support</h3>
+                            <p class="card-text">Expert assistance with total loss claims and settlements</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="service-icon">
+                                <i class="bi bi-speedometer2"></i>
+                            </div>
+                            <h3 class="h5">Expedited Process</h3>
+                            <p class="card-text">Fast-track repairs and claims processing for quicker turnaround</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge bg-primary bg-opacity-10 text-primary mb-2">Recent Work</span>
+                <h2 class="display-5 fw-bold mb-3">Latest Projects</h2>
+                <p class="lead text-muted">See our expert restorations and repairs</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm project-card">
+                        <img src="https://img001.prntscr.com/file/img001/U1WXUpGjTyOigh88fCsB8Q.png" 
+                             class="card-img-top project-image" 
+                             alt="Auto Body Repair Project">
+                        <div class="card-body">
+                            <h3 class="h5">Complete Body Restoration</h3>
+                            <p class="card-text">Full exterior restoration with precision repairs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm project-card">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2252.jpg-i6LqP7xSbHUhDvFhBpLSkSbTlLaXYa.jpeg" 
+                             class="card-img-top project-image" 
+                             alt="Auto Body Repair Project">
+                        <div class="card-body">
+                            <h3 class="h5">Precision Panel Repair</h3>
+                            <p class="card-text">Expert damage assessment and professional repair execution.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge bg-primary bg-opacity-10 text-primary mb-2">Testimonials</span>
+                <h2 class="display-5 fw-bold mb-3">Customer Stories</h2>
+                <p class="lead text-muted">What our clients say about us</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="card border-0 shadow-sm review-card">
+                                    <div class="card-body text-center p-5">
+                                        <div class="stars mb-3 fs-4">★★★★★</div>
+                                        <p class="lead mb-4">"You did a wonderful job very professional and nice and the customer service was excellent."</p>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <div class="avatar-sm me-3">DA</div>
+                                            <div class="text-start">
+                                                <h6 class="mb-1">Dana Adams</h6>
+                                                <p class="small text-muted mb-0">2 weeks ago</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="card border-0 shadow-sm review-card">
+                                    <div class="card-body text-center p-5">
+                                        <div class="stars mb-3 fs-4">★★★★★</div>
+                                        <p class="lead mb-4">"Year after year CarMaster Auto has been there for all my repair needs. Professional and thorough every time."</p>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <div class="avatar-sm me-3">EZ</div>
+                                            <div class="text-start">
+                                                <h6 class="mb-1">Edward Zimmelman</h6>
+                                                <p class="small text-muted mb-0">1 month ago</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="card border-0 shadow-sm review-card">
+                                    <div class="card-body text-center p-5">
+                                        <div class="stars mb-3 fs-4">★★★★★</div>
+                                        <p class="lead mb-4">"Best in business. Great team. Quote was spot on service was excellent."</p>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <div class="avatar-sm me-3">DC</div>
+                                            <div class="text-start">
+                                                <h6 class="mb-1">DC</h6>
+                                                <p class="small text-muted mb-0">2 months ago</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                        <div class="carousel-indicators position-relative mt-4">
+                            <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="0" class="active bg-primary" aria-current="true"></button>
+                            <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="1" class="bg-primary"></button>
+                            <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="2" class="bg-primary"></button>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#moreReviewsModal">
+                            See More Reviews
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- More Reviews Modal -->
+    <div class="modal fade" id="moreReviewsModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">All Customer Reviews</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-4" id="allReviewsContainer">
+                        <!-- Reviews will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h1 class="text-center mb-5">Contact Us</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <p class="mb-3"><i class="bi bi-geo-alt-fill"></i> 3803 Sullivant Ave, Columbus, OH 43228</p>
+                            <p class="mb-3"><i class="bi bi-telephone-fill"></i> (614) 649-1542</p>
+                            <p class="mb-4"><i class="bi bi-envelope-fill"></i> info@carmasterautobody.com</p>
+                            
+                            <h3 class="h5 mb-3">Business Hours:</h3>
+                            <p class="mb-2">Monday - Friday: 7 AM–7 PM</p>
+                            <p class="mb-2">Saturday: 8 AM–4 PM</p>
+                            <p>Sunday: Closed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Modal -->
+    <div class="modal fade" id="appointmentModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">Schedule Service</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-3 me-3">
+                            <i class="bi bi-clock text-primary"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Operating Hours</h6>
+                            <p class="mb-0 small">Mon-Fri: 7 AM–7 PM<br>Sat: 8 AM–4 PM<br>Sun: Closed</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-3 me-3">
+                            <i class="bi bi-telephone text-primary"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Contact</h6>
+                            <p class="mb-0"><strong>(614) 649-1542</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <a href="tel:+16146491542" class="btn btn-primary">Call Now</a>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-5 mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO-GHL9UpZiSY96FVqaaufmDnpWVmpKFN.png" 
+                         alt="CarMaster Auto Body Logo" 
+                         height="60" 
+                         class="mb-4">
+                    <p class="mb-4">Professional auto body repair with exceptional service and quality you can trust.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-twitter fs-5"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-linkedin fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="services.html" class="text-light text-decoration-none">Services</a></li>
+                        <li class="mb-2"><a href="projects.html" class="text-light text-decoration-none">Projects</a></li>
+                        <li class="mb-2"><a href="reviews.html" class="text-light text-decoration-none">Reviews</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-light text-decoration-none">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="mb-4">Services</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">Expert Diagnostics</li>
+                        <li class="mb-2">Collision Repair</li>
+                        <li class="mb-2">Insurance Claims</li>
+                        <li class="mb-2">Quality Assurance</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="mb-4">Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-geo-alt me-2"></i>3803 Sullivant Ave, Columbus, OH 43228</li>
+                        <li class="mb-2"><i class="bi bi-telephone me-2"></i>(614) 649-1542</li>
+                        <li class="mb-2"><i class="bi bi-envelope me-2"></i>info@carmasterautobody.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 CarMaster Auto Body. All rights reserved.</p>
+                <p class="mt-2 fw-bold">WE ARE CERTIFIED BY BBB AND HAVE AN A- RATING</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Reviews data
+        const reviews = [
+            {
+                author: "Dana Adams",
+                text: "You did a wonderful job very professional and nice and the customer service was excellent.",
+                date: "2 weeks ago",
+                rating: 5
+            },
+            {
+                author: "Jo Mamma",
+                text: "Friendly, knowledgeable and helpful from the front desk to the mechanics. Would definitely recommend!",
+                date: "3 weeks ago",
+                rating: 4
+            },
+            {
+                author: "Alberto Dayao",
+                text: "Service was unaware I needed to make an appointment but my experience was still great.",
+                date: "2 weeks ago",
+                rating: 5
+            },
+            {
+                author: "Michelle Moeur",
+                text: "My Service was done Right away Excellent service",
+                date: "2 weeks ago",
+                rating: 5
+            },
+            {
+                author: "Edward Zimmelman",
+                text: "Year after year CarMaster Auto has been there for all my repair needs. Professional and thorough every time.",
+                date: "1 month ago",
+                rating: 5
+            },
+            {
+                author: "Rachel Balbirye",
+                text: "I came for my due tire rotation and changed my transmission fluid. Great service and friendly staff!",
+                date: "1 month ago",
+                rating: 5
+            },
+            {
+                author: "Cathy Wood",
+                text: "The appt process was easy, you can make appts online. I liked that feature a lot.",
+                date: "1 month ago",
+                rating: 5
+            },
+            {
+                author: "Michael Shaw",
+                text: "I was very pleased with my auto repair experience in Norfolk. The staff was knowledgeable and efficient.",
+                date: "1 month ago",
+                rating: 5
+            },
+            {
+                author: "Dee Rich",
+                text: "So far the best shop I took my car to in all of Hampton roads. They really know what they're doing.",
+                date: "2 months ago",
+                rating: 5
+            },
+            {
+                author: "Pavel Abramishkin",
+                text: "I appreciate always being seen in a timely manner. I've gone here for years and always had great experiences.",
+                date: "2 months ago",
+                rating: 5
+            },
+            {
+                author: "Donald Houk",
+                text: "They treated me very well. I have a suggestion thou.. the waiting area needs more comfortable seating.",
+                date: "2 months ago",
+                rating: 4
+            },
+            {
+                author: "DC",
+                text: "Best in business. Great team. Quote was spot on service was excellent.",
+                date: "2 months ago",
+                rating: 5
+            }
+        ];
+
+        // Populate all reviews in modal
+        function populateAllReviews() {
+            const container = document.getElementById('allReviewsContainer');
+            reviews.forEach(review => {
+                const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+                const initials = review.author.split(' ').map(n => n[0]).join('');
+                const reviewHTML = `
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="avatar-sm me-3">${initials}</div>
+                                    <div>
+                                        <h6 class="mb-1">${review.author}</h6>
+                                        <div class="stars">${stars}</div>
+                                    </div>
+                                </div>
+                                <p class="card-text">${review.text}</p>
+                                <p class="card-text"><small class="text-muted">${review.date}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += reviewHTML;
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            populateAllReviews();
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 10) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>CarMaster Auto - Total Loss Specialists | Customer Reviews</title>
+    <meta name="description" content="See what our customers say about CarMaster Auto's total loss services. Expert assistance with insurance claims, fast payouts, and professional customer service.">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #4f46e5;
+            --accent-color: #818cf8;
+            --surface-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: var(--surface-color) !important;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1030;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.98) !important;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 12px;
+            padding: 8px 24px;  /* Reduced padding */
+            font-size: 0.9rem;  /* Smaller font size */
+        }
+
+        body {
+            padding-top: 76px;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #fafafa 0%, #f3f4f6 100%);
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 24px;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.08);
+        }
+
+        .avatar {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.25rem;
+            transform: rotate(-5deg);
+            transition: all 0.3s ease;
+        }
+
+        .review-stats {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .rating-bar {
+            height: 8px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .rating-fill {
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 100px;
+            transition: width 1s ease-out;
+        }
+
+        .stat-card {
+            background: rgba(99, 102, 241, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO-GHL9UpZiSY96FVqaaufmDnpWVmpKFN.png" 
+                     alt="CarMaster Logo" 
+                     height="60">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="reviews.html">Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+                            Book Appointment
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Reviews Section -->
+    <section class="py-5 mt-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge bg-primary bg-opacity-10 text-primary mb-2">CUSTOMER REVIEWS</span>
+                <h1 class="display-4 fw-bold mb-3">Customer Success Stories</h1>
+                <p class="lead text-muted">What our clients say about us</p>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-number">5.0</div>
+                        <p class="mb-0">Customer Rating</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-number">4-5</div>
+                        <p class="mb-0">Days Average Processing</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-number">30+</div>
+                        <p class="mb-0">Years Experience</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rating Distribution -->
+            <div class="review-stats mb-5">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <h2 class="display-1 fw-bold mb-0 me-4 gradient-text">5.0</h2>
+                            <div>
+                                <div class="star-rating mb-2 fs-4">★★★★★</div>
+                                <p class="text-muted mb-0">From verified reviews</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="rating-breakdown">
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="me-2">5★</span>
+                                <div class="rating-bar flex-grow-1">
+                                    <div class="rating-fill" style="width: 100%"></div>
+                                </div>
+                                <span class="ms-2">100%</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="me-2">4★</span>
+                                <div class="rating-bar flex-grow-1">
+                                    <div class="rating-fill" style="width: 0%"></div>
+                                </div>
+                                <span class="ms-2">0%</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="me-2">3★</span>
+                                <div class="rating-bar flex-grow-1">
+                                    <div class="rating-fill" style="width: 0%"></div>
+                                </div>
+                                <span class="ms-2">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews Grid -->
+            <div class="row g-4" id="reviewsContainer">
+                <!-- Reviews will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-5 mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO-GHL9UpZiSY96FVqaaufmDnpWVmpKFN.png" 
+                         alt="CarMaster Auto Body Logo" 
+                         height="60" 
+                         class="mb-4">
+                    <p class="mb-4">Specializing in total loss assistance and professional auto body repair services.</p>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="mb-4">Business Hours</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-clock me-2"></i>Monday - Friday: 7 AM–7 PM</li>
+                        <li class="mb-2"><i class="bi bi-clock me-2"></i>Saturday: 8 AM–4 PM</li>
+                        <li class="mb-2"><i class="bi bi-clock me-2"></i>Sunday: Closed</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="mb-4">Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-geo-alt me-2"></i>3803 Sullivant Ave, Columbus, OH 43228</li>
+                        <li class="mb-2"><i class="bi bi-telephone me-2"></i>(614) 649-1542</li>
+                        <li class="mb-2"><i class="bi bi-envelope me-2"></i>info@carmasterautobody.com</li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="services.html" class="text-light text-decoration-none">Services</a></li>
+                        <li class="mb-2"><a href="projects.html" class="text-light text-decoration-none">Projects</a></li>
+                        <li class="mb-2"><a href="reviews.html" class="text-light text-decoration-none">Reviews</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-light text-decoration-none">About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 CarMaster Auto Body. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        const reviews = [
+            {
+                author: "brukie kassa",
+                text: "They are NOT a scam. They are LEGIT! They helped me with the entire process of dealing with my insurance and has been 100% transparent and walked me through every step of the way.",
+                rating: 5
+            },
+            {
+                author: "Mike Sweigart",
+                text: "I just had a great experience with the people at CarMaster. They were fantastic, they got me my check way before the insurance company would have and I give them a triple A Plus. Thank you CarMaster for a great job!",
+                rating: 5
+            },
+            {
+                author: "Tatyana Royal",
+                text: "My experience with them has been amazing, even after my vehicle being total, they done everything they can to help better my situation. I very much recommend this company, especially if your insurance company gives you problems.",
+                rating: 5
+            },
+            {
+                author: "Basim Al Rimawi",
+                text: "Very dependable company. If your car is totaled they will get you the most out of your car.",
+                rating: 5
+            },
+            {
+                author: "American Eagle",
+                text: "I want to thank Christina for her outstanding help with my total loss car. She got me a great price and made the entire process incredibly fast and smooth for us. Her professionalism and efficiency truly stood out. Highly recommend!",
+                rating: 5
+            },
+            {
+                author: "Twilight Auto Sale",
+                text: "Christina was professional to work with on my total loss car. She worked very hard to give a fair price and handled everything quickly and efficiently. The process was stress-free thanks to her expertise.",
+                rating: 5
+            },
+            {
+                author: "Brandon",
+                text: "Carmaster picked up my car I got my check ASAP they were fantastic and I would definitely use them again!!!! They're the best so far!",
+                rating: 5
+            },
+            {
+                author: "Kristina",
+                text: "Amazing customer service! If you're looking for the best company to use - look no further! I promise you won't be disappointed 😊",
+                rating: 5
+            },
+            {
+                author: "Delana Sexton",
+                text: "Wonderful group to work with. They took the time to ensure I was covered every way possible after my accident. Very thankful for Ariana and Christine's help after my accident. Highly recommend.",
+                rating: 5
+            },
+            {
+                author: "Amy Couk",
+                text: "The women have been the greatest people to work with. I will be recommending carmaster auto body for any of my friends and family to this place. They have been so nice and helpful.",
+                rating: 5
+            },
+            {
+                author: "Beth Kennedy",
+                text: "Very prompt and were willing to take on heavily damaged vehicle. Updates and communication were great!",
+                rating: 5
+            },
+            {
+                author: "Daniel Pate",
+                text: "Debra was absolutely amazing! She called me the day after my accident and got everything moving. Within 30 minutes she was able to get me my rental car my car totaled out. Best customer service I have ever experienced!!",
+                rating: 5
+            },
+            {
+                author: "Natasha Smith",
+                text: "Christine was very thorough with her assistance and helping me navigate my total loss. She kept me abreast at every step. Great service.",
+                rating: 5
+            },
+            {
+                author: "Stephanie Rupe",
+                text: "Arianna and Christine are a pleasure to do business with!! The communication was spot on when dealing with my brothers total loss vehicle. They are good honest people and helped get us his settlement at top dollar.",
+                rating: 5
+            },
+            {
+                author: "Ursula Sallee",
+                text: "Highly recommend this company great service and communication from both Arianna and Christina. My car totaled and I had my check in hand in 4dys just 4dys thank you ladies!!",
+                rating: 5
+            },
+            {
+                author: "Jesse Sallee",
+                text: "Best total-loss specialist in the industry! Very professional and friendly!",
+                rating: 5
+            },
+            {
+                author: "Jeremiah Morgan",
+                text: "Christina helped our family immensely. This place is awesome - they helped us with our total loss vehicle and helped our claim get expedited. What would have taken 3 months took just 10 days.",
+                rating: 5
+            },
+            {
+                author: "Ronald Smith",
+                text: "I love this shop! Christina and Arianna were wonderful, they helped me get my car totaled and I received my money within 5 days... Amazing!! I recommend everyone who's car is totaled to call them immediately! Life long happy customer here 😊",
+                rating: 5
+            },
+            {
+                author: "Jalen Wilson",
+                text: "Great experience! Overall 10/10, Christina provided excellent knowledge across the board and went above and beyond!! Would recommend for anyone in future needed car repair or to buy a vehicle.",
+                rating: 5
+            },
+            {
+                author: "Larry Bloominshine",
+                text: "Best company. Our vehicle was totalled and this company is amazing with customer service and they expedited the whole claims process in just 4 days! How amazing. Thanks guys!!!",
+                rating: 5
+            },
+            {
+                author: "Lisa Gilliam",
+                text: "Christina was amazing. She helped us so much to expedite the process with our vehicle.",
+                rating: 5
+            },
+            {
+                author: "Hot Cheetos Bag",
+                text: "When my dad had his car totalled they calmed us down and helped us through the whole process. Amazing people",
+                rating: 5
+            },
+            {
+                author: "Charelle Moncrease",
+                text: "These guys really helped out with the total loss process and made it easier.",
+                rating: 5
+            },
+            {
+                author: "Dominique Dejarnette",
+                text: "Great customer service! This business cares about its clients!",
+                rating: 5
+            },
+            {
+                author: "B Mohamud",
+                text: "Amazing shop! Reliable service! Highly recommend!",
+                rating: 5
+            }
+        ];
+
+        function renderReviews() {
+            const container = document.getElementById('reviewsContainer');
+            reviews.forEach((review, index) => {
+                const stars = '★'.repeat(review.rating);
+                const reviewCard = `
+                    <div class="col-md-6 col-lg-4">
+                        <div class="review-card h-100 p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="avatar me-3">${review.author[0]}</div>
+                                <div>
+                                    <h5 class="mb-1 fw-semibold">${review.author}</h5>
+                                    <div class="star-rating">${stars}</div>
+                                </div>
+                            </div>
+                            <p class="text-muted mb-0">${review.text}</p>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', reviewCard);
+            });
+        }
+
+        // Initial render
+        renderReviews();
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 10) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
+

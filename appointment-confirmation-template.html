@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Appointment Confirmed - CarMaster</title>
+    <style>
+        body, table, td {
+            margin: 0;
+            padding: 0;
+            background-color: #000000 !important;
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0; background-color: #ffffff !important;">
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #000000 !important;">
+        <tr>
+            <td align="center" style="padding: 40px 0;">
+                <!-- Container Table -->
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="max-width: 600px; background-color: #0A0A0A; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 24px rgba(0,0,0,0.5);">
+                    <!-- Logo Header -->
+                    <tr>
+                        <td align="center" style="padding: 40px 20px;">
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background: linear-gradient(135deg, #0a0a0a, #1a1a1a); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                                <tr>
+                                    <td align="center" style="padding: 30px;">
+                                        <div style="font-family: 'Arial Black', Arial, sans-serif; font-size: 42px; font-weight: 900; letter-spacing: 4px; line-height: 1;">
+                                            <span style="color: #FFFFFF; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">CAR</span><span style="color: #FF0000; text-shadow: 0 2px 4px rgba(255,0,0,0.3);">MASTER</span>
+                                        </div>
+                                        <div style="margin-top: 10px; width: 40px; height: 3px; background: linear-gradient(90deg, #FFFFFF, #FF0000);"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Content Section -->
+                    <tr>
+                        <td style="padding: 0 40px 40px;">
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td>
+                                        <h1 style="margin: 0 0 30px; font-family: Arial, sans-serif; font-size: 24px; font-weight: 800; color: #FFFFFF; text-transform: uppercase; letter-spacing: 1px;">Appointment Confirmed!</h1>
+                                        <p style="margin: 0 0 20px; font-family: Arial, sans-serif; font-size: 16px; line-height: 24px; color: #E0E0E0;">
+                                            Hello <strong>{{name}}</strong>,
+                                        </p>
+                                        <p style="margin: 0 0 20px; font-family: Arial, sans-serif; font-size: 16px; line-height: 24px; color: #E0E0E0;">
+                                            We're pleased to confirm your appointment at CarMaster. We look forward to servicing your vehicle soon!
+                                        </p>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Appointment Details -->
+                                <tr>
+                                    <td style="padding: 20px 0;">
+                                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #111111; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                                            <tr>
+                                                <td style="padding: 20px;">
+                                                    <h2 style="margin: 0 0 20px; font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; color: #FF0000;">Appointment Details</h2>
+                                                    
+                                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                        <tr>
+                                                            <td width="40%" style="padding: 8px 0; font-family: Arial, sans-serif; font-size: 14px; color: #999999;">Date:</td>
+                                                            <td style="padding: 8px 0; font-family: Arial, sans-serif; font-size: 14px; color: #FFFFFF; font-weight: 600;">{{date}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="40%" style="padding: 8px 0; font-family: Arial, sans-serif; font-size: 14px; color: #999999;">Vehicle:</td>
+                                                            <td style="padding: 8px 0; font-family: Arial, sans-serif; font-size: 14px; color: #FFFFFF; font-weight: 600;">{{carModel}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="40%" style="padding: 8px 0; font-family: Arial, sans-serif; font-size: 14px; color: #999999;">Location:</td>
+                                                            <td style="padding: 8px 0; font-family: Arial, sans-serif; font-size: 14px; color: #FFFFFF; font-weight: 600;">CarMaster Auto Shop<br>Columbus, OH</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <p style="margin: 20px 0; font-family: Arial, sans-serif; font-size: 16px; line-height: 24px; color: #E0E0E0;">
+                                            If you need to reschedule or have any questions about your appointment, please call us at <strong style="color: #FFFFFF;">(614) 649-1542</strong>.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td style="padding: 30px 40px; border-top: 1px solid rgba(255,255,255,0.1);">
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td style="color: #999999; font-family: Arial, sans-serif; font-size: 14px; line-height: 20px;">
+                                        <p style="margin: 0;">Thank you for choosing CarMaster for your automotive needs.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Copyright -->
+                    <tr>
+                        <td align="center" style="padding: 20px 40px 40px;">
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td align="center" style="color: #777777; font-family: Arial, sans-serif; font-size: 12px; line-height: 18px;">
+                                        &copy; 2024 CarMaster | Columbus, OH<br/>
+                                        <span style="color: #FF0000; font-weight: 600;">Next-Gen Auto Body Technology</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
