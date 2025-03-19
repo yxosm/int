@@ -206,6 +206,16 @@ const reviews: Review[] = [
     rating: 5,
   },
   {
+    author: "Dana Adams",
+    text: "You did a wonderful job very professional and nice and the customer service was excellent.",
+    rating: 5,
+  },
+  {
+    author: "Edward Zimmelman",
+    text: "Year after year CarMaster Auto has been there for all my repair needs. Professional and thorough every time.",
+    rating: 5,
+  },
+  {
     author: "American Eagle",
     text: "I want to thank Christina for her outstanding help with my total loss car. She got me a great price and made the entire process incredibly fast and smooth for us. Her professionalism and efficiency truly stood out. Highly recommend!",
     rating: 5,

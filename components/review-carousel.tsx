@@ -42,6 +42,18 @@ const reviews = [
     text: "Year after year CarMaster Auto has been there for all my repair needs. Professional and thorough every time.",
     date: "2 months ago",
     rating: 5,
+  },
+  {
+    author: "American Eagle",
+    text: "I want to thank Christina for her outstanding help with my total loss car. She got me a great price and made the entire process incredibly fast and smooth for us. Her professionalism and efficiency truly stood out. Highly recommend!",
+    date: "3 months ago",
+    rating: 5,
+  },
+  {
+    author: "Twilight Auto Sale",
+    text: "Christina was professional to work with on my total loss car. She worked very hard to give a fair price and handled everything quickly and efficiently. The process was stress-free thanks to her expertise.",
+    date: "3 months ago",
+    rating: 5,
   }
 ]
 

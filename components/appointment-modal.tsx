@@ -403,7 +403,9 @@ export function AppointmentModal({ children }: { children: React.ReactNode }) {
                   "dark:bg-black dark:text-white dark:border-white/10",
                   "[&_.rdp-day:focus]:bg-primary [&_.rdp-day:focus]:text-primary-foreground",
                   "[&_.rdp-day:hover]:bg-muted [&_.rdp-day:hover]:text-accent-foreground",
-                  "[&_.rdp-day.rdp-day_selected]:bg-primary [&_.rdp-day.rdp-day_selected]:text-primary-foreground"
+                  "[&_.rdp-day.rdp-day_selected]:bg-primary [&_.rdp-day.rdp-day_selected]:text-primary-foreground",
+                  // Add styles to hide today highlighting
+                  "[&_.rdp-day_today]:bg-inherit [&_.rdp-day_today]:text-inherit [&_.rdp-day_today]:font-normal [&_.rdp-day_today]:border-none"
                 )}
               />
             </div>
