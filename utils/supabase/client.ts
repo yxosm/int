@@ -4,7 +4,7 @@ import { createBrowserClient } from "@supabase/ssr";
 const getSiteUrl = () => {
   if (typeof window === 'undefined') {
     // During build time or server-side rendering
-    return 'https://yxosm.github.io/create';
+    return 'https://yxosm.github.io/int';
   }
   
   // In the browser, for GitHub Pages deployment
