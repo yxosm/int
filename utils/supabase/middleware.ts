@@ -11,7 +11,7 @@ export const createClient = (request: NextRequest) => {
 
   // Get the base path for GitHub Pages
   const isProduction = process.env.NODE_ENV === 'production';
-  const basePath = isProduction ? '/create' : '';
+  const basePath = isProduction ? '/int' : '';
   const siteUrl = isProduction 
     ? 'https://yxosm.github.io/create'
     : `${request.nextUrl.origin}`;
@@ -26,7 +26,7 @@ export const createClient = (request: NextRequest) => {
         detectSessionInUrl: true,
         persistSession: true,
         // Use the actual site URL with the correct base path
-        redirectTo: `${siteUrl}/auth/callback`,
+        redirectTo: `${siteUrl}/int/auth/callback`,
       },
       cookies: {
         get(name: string) {
