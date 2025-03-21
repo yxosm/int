@@ -9,10 +9,25 @@ export const createClient = (request: NextRequest) => {
     },
   });
 
+  // Get the base path for GitHub Pages
+  const isProduction = process.env.NODE_ENV === 'production';
+  const basePath = isProduction ? '/create' : '';
+  const siteUrl = isProduction 
+    ? 'https://yxosm.github.io/create'
+    : `${request.nextUrl.origin}`;
+
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
+      auth: {
+        flowType: 'pkce',
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+        persistSession: true,
+        // Use the actual site URL with the correct base path
+        redirectTo: `${siteUrl}/auth/callback`,
+      },
       cookies: {
         get(name: string) {
           return request.cookies.get(name)?.value
