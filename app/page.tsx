@@ -7,7 +7,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Car, PenToolIcon as Tools, Shield, CreditCard, ChevronRight } from "lucide-react"
+import { Car, PenToolIcon as Tools, Shield, CreditCard, ChevronRight, Phone } from "lucide-react"
 import { ReviewCarousel } from "@/components/review-carousel"
 import { AppointmentModal } from "@/components/appointment-modal"
 import { motion, useScroll, useTransform } from "framer-motion"
@@ -74,6 +74,35 @@ export default function Home() {
                 <ChevronRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </AppointmentModal>
+          </motion.div>
+
+          <motion.div className="flex flex-wrap justify-center gap-6 md:gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="w-full sm:w-auto"
+            >
+              <AppointmentModal>
+                <Button className="multi-gradient-button w-full sm:w-auto text-lg py-6 px-8">
+                  Book Appointment
+                  <ChevronRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </AppointmentModal>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="w-full sm:w-auto"
+            >
+              <a href="tel:+16146491542" className="block">
+                <Button className="glow-button w-full sm:w-auto text-lg py-6 px-8">
+                  <Phone className="mr-2 h-5 w-5" />
+                  (614) 649-1542
+                </Button>
+              </a>
+            </motion.div>
           </motion.div>
         </div>
 
