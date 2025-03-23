@@ -34,53 +34,47 @@ export default function ServicesPage() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <motion.div variants={fadeIn} custom={1} initial="hidden" animate="visible">
-              <ServiceCard3D
-                icon={<Car className="h-8 w-8" />}
-                title="Collision Repair"
-                description="Expert repair for all types of collision damage, ensuring your vehicle is restored to pre-accident condition."
-              />
-            </motion.div>
+            <ServiceCard3D
+              icon={<Car className="h-8 w-8" />}
+              title="Collision Repair"
+              description="Expert repair for all types of collision damage, ensuring your vehicle is restored to pre-accident condition."
+              index={1}
+            />
 
-            <motion.div variants={fadeIn} custom={2} initial="hidden" animate="visible">
-              <ServiceCard3D
-                icon={<Palette className="h-8 w-8" />}
-                title="Paint Services"
-                description="Professional paint matching and application using premium materials and modern techniques."
-              />
-            </motion.div>
+            <ServiceCard3D
+              icon={<Palette className="h-8 w-8" />}
+              title="Paint Services"
+              description="Professional paint matching and application using premium materials and modern techniques."
+              index={2}
+            />
 
-            <motion.div variants={fadeIn} custom={3} initial="hidden" animate="visible">
-              <ServiceCard3D
-                icon={<Tools className="h-8 w-8" />}
-                title="Frame Repair"
-                description="Precise frame straightening and structural repairs using advanced equipment."
-              />
-            </motion.div>
+            <ServiceCard3D
+              icon={<Tools className="h-8 w-8" />}
+              title="Frame Repair"
+              description="Precise frame straightening and structural repairs using advanced equipment."
+              index={3}
+            />
 
-            <motion.div variants={fadeIn} custom={4} initial="hidden" animate="visible">
-              <ServiceCard3D
-                icon={<Shield className="h-8 w-8" />}
-                title="Insurance Claims"
-                description="Direct insurance billing and assistance with claims processing for a hassle-free experience."
-              />
-            </motion.div>
+            <ServiceCard3D
+              icon={<Shield className="h-8 w-8" />}
+              title="Insurance Claims"
+              description="Direct insurance billing and assistance with claims processing for a hassle-free experience."
+              index={4}
+            />
 
-            <motion.div variants={fadeIn} custom={5} initial="hidden" animate="visible">
-              <ServiceCard3D
-                icon={<CarFront className="h-8 w-8" />}
-                title="Rental Assistance"
-                description="We help coordinate rental vehicles through your insurance coverage during repairs."
-              />
-            </motion.div>
+            <ServiceCard3D
+              icon={<CarFront className="h-8 w-8" />}
+              title="Rental Assistance"
+              description="We help coordinate rental vehicles through your insurance coverage during repairs."
+              index={5}
+            />
 
-            <motion.div variants={fadeIn} custom={6} initial="hidden" animate="visible">
-              <ServiceCard3D
-                icon={<Zap className="h-8 w-8" />}
-                title="Express Service"
-                description="Quick turnaround for minor repairs and touch-ups."
-              />
-            </motion.div>
+            <ServiceCard3D
+              icon={<Zap className="h-8 w-8" />}
+              title="Express Service"
+              description="Quick turnaround for minor repairs and touch-ups."
+              index={6}
+            />
           </div>
 
           <motion.div className="mt-16 text-center" variants={fadeIn} custom={7} initial="hidden" animate="visible">
@@ -100,19 +94,53 @@ function ServiceCard3D({
   icon,
   title,
   description,
+  index,
 }: {
   icon: React.ReactNode
   title: string
   description: string
+  index: number
 }) {
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.5,
+      }),
+    }),
+  }
+
   return (
-    <div className="service-card-3d p-8 h-full">
-      <div className="content">
-        <div className="icon-container">{icon}</div>
-        <h3 className="service-title">{title}</h3>
-        <p className="text-gray-400">{description}</p>
+    <motion.div 
+      variants={fadeIn} 
+      custom={index} 
+      initial="hidden" 
+      animate="visible" 
+      className="relative group"
+    >
+      <div className="service-card-3d h-full p-6 sm:p-8">
+        <div className="icon-container group-hover:scale-110 transition-transform duration-300">
+          {icon}
+        </div>
+        <div className="content space-y-3">
+          <h3 className="text-xl sm:text-2xl font-semibold">{title}</h3>
+          <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
+            {description}
+          </p>
+          <div className="pt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <AppointmentModal>
+              <Button className="glow-button w-full">
+                Book Service
+              </Button>
+            </AppointmentModal>
+          </div>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       </div>
-    </div>
+    </motion.div>
   )
 }
 
