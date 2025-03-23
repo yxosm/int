@@ -29,14 +29,25 @@ export function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10)
     }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+
+    // Add passive event listener for better scroll performance on mobile
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   // Close mobile menu when route changes
   useEffect(() => {
     setIsOpen(false)
   }, [pathname])
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+      return () => {
+        document.body.style.overflow = ''
+      }
+    }
+  }, [isOpen])
   
   const handleSignOut = () => {
     signOut()
@@ -149,23 +160,28 @@ export function Navbar() {
   )
 }
 
-function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
+function NavLink({ href, children, className }: { href: string; children: React.ReactNode; className?: string }) {
   return (
     <Link
       href={href}
-      className="text-white/80 hover:text-white font-medium transition-colors duration-300 animated-underline"
+      className={className}
     >
       {children}
     </Link>
   )
 }
 
-function MobileNavLink({ href, children, onClick }: { href: string; children: React.ReactNode; onClick?: () => void }) {
+function MobileNavLink({ href, children, onClick, className }: { 
+  href: string; 
+  children: React.ReactNode; 
+  onClick?: () => void;
+  className?: string;
+}) {
   return (
     <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }}>
       <Link
         href={href}
-        className="text-xl font-medium py-2 block text-white/80 hover:text-white transition-colors"
+        className={className}
         onClick={onClick}
       >
         {children}
