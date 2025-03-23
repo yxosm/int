@@ -17,11 +17,13 @@ import {
 import { ChevronDown } from "lucide-react"
 import { useAuth } from "@/contexts/auth-context"
 import { AuthModal } from "@/components/auth-modal"
+import { usePathname } from 'next/navigation'
 
 export function Navbar() {
   const { user, signOut } = useAuth()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
   
   useEffect(() => {
     const handleScroll = () => {
@@ -30,10 +32,23 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsOpen(false)
+  }, [pathname])
   
   const handleSignOut = () => {
     signOut()
   }
+
+  const navLinks = [
+    { href: '/', label: 'Home' },
+    { href: '/services', label: 'Services' },
+    { href: '/projects', label: 'Projects' },
+    { href: '/reviews', label: 'Reviews' },
+    { href: '/about', label: 'About' },
+  ]
 
   return (
     <header
@@ -53,11 +68,17 @@ export function Navbar() {
           />
         </Link>
         <nav className="hidden md:flex items-center space-x-8">
-          <NavLink href="/">Home</NavLink>
-          <NavLink href="/services">Services</NavLink>
-          <NavLink href="/projects">Projects</NavLink>
-          <NavLink href="/reviews">Reviews</NavLink>
-          <NavLink href="/about">About</NavLink>
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.href}
+              href={link.href}
+              className={`text-sm font-medium transition-colors hover:text-white ${
+                pathname === link.href ? 'text-white' : 'text-white/70'
+              }`}
+            >
+              {link.label}
+            </NavLink>
+          ))}
         </nav>
         <div className="hidden md:flex items-center space-x-4">
           <AppointmentModal>
@@ -75,21 +96,18 @@ export function Navbar() {
           </SheetTrigger>
           <SheetContent side="right" className="w-full sm:w-80 bg-black/95 backdrop-blur-lg border-l border-white/10">
             <div className="flex flex-col space-y-6 mt-8">
-              <MobileNavLink href="/" onClick={() => setIsOpen(false)}>
-                Home
-              </MobileNavLink>
-              <MobileNavLink href="/services" onClick={() => setIsOpen(false)}>
-                Services
-              </MobileNavLink>
-              <MobileNavLink href="/projects" onClick={() => setIsOpen(false)}>
-                Projects
-              </MobileNavLink>
-              <MobileNavLink href="/reviews" onClick={() => setIsOpen(false)}>
-                Reviews
-              </MobileNavLink>
-              <MobileNavLink href="/about" onClick={() => setIsOpen(false)}>
-                About
-              </MobileNavLink>
+              {navLinks.map((link) => (
+                <MobileNavLink
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`block text-sm font-medium transition-colors hover:text-white ${
+                    pathname === link.href ? 'text-white' : 'text-white/70'
+                  }`}
+                >
+                  {link.label}
+                </MobileNavLink>
+              ))}
               <AppointmentModal>
                 <Button className="glow-button w-full text-white font-medium py-6 rounded-md transition-all duration-300 hover:shadow-lg mt-4">
                   Book Appointment
