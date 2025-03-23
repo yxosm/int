@@ -1,20 +1,10 @@
-import type React from "react"
 import type { Metadata } from "next"
-import { Montserrat } from "next/font/google"
-import "./globals.css"
+import { Toaster } from "@/components/ui/toaster"
 import { ThemeProvider } from "@/components/theme-provider"
 import { AuthProvider } from "@/contexts/auth-context"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { Toaster } from "@/components/ui/toaster"
-import { Providers } from "@/contexts/providers"
-import { GeistSans } from "geist/font/sans"
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-montserrat",
-  display: "swap",
-})
+import "./globals.css"
 
 export const viewport = {
   width: "device-width",
@@ -31,9 +21,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
     <html lang="en" suppressHydrationWarning className="dark">
       <head>
@@ -41,21 +31,19 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="format-detection" content="telephone=no" />
       </head>
-      <body className={`${GeistSans.className} antialiased`}>
+      <body className="font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} forcedTheme="dark">
           <AuthProvider>
-            <Providers>
-              <div className="flex min-h-screen flex-col bg-grid neo-gradient">
-                <Navbar />
-                <main className="flex-1">
-                  <div className="transition-all duration-300 ease-in-out">
-                    {children}
-                  </div>
-                </main>
-                <Footer />
-              </div>
-              <Toaster />
-            </Providers>
+            <div className="flex min-h-screen flex-col bg-grid neo-gradient">
+              <Navbar />
+              <main className="flex-1">
+                <div className="transition-all duration-300 ease-in-out">
+                  {children}
+                </div>
+              </main>
+              <Footer />
+            </div>
+            <Toaster />
           </AuthProvider>
         </ThemeProvider>
       </body>
