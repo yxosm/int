@@ -11,14 +11,14 @@ import { Car, Palette, PenToolIcon as Tools, Shield, CarFront, Zap } from "lucid
 export default function ServicesPage() {
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
-    visible: (i: number) => ({
+    visible: {
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.1,
-        duration: 0.5,
-      },
-    }),
+        delay: 0.1,
+        duration: 0.5
+      }
+    }
   }
 
   return (
@@ -103,23 +103,25 @@ function ServiceCard3D({
 }) {
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
-    visible: (i: number) => ({
+    visible: {
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.1,
-        duration: 0.5,
-      }),
-    }),
+        delay: index * 0.1,
+        duration: 0.5
+      }
+    }
   }
 
   return (
     <motion.div 
       variants={fadeIn} 
-      custom={index} 
       initial="hidden" 
       animate="visible" 
       className="relative group"
+      whileTap={{ scale: 0.98 }}
+      whileHover={{ scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 300, damping: 10 }}
     >
       <div className="service-card-3d h-full p-6 sm:p-8">
         <div className="icon-container group-hover:scale-110 transition-transform duration-300">
@@ -130,9 +132,9 @@ function ServiceCard3D({
           <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
             {description}
           </p>
-          <div className="pt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="pt-4 md:opacity-0 md:group-hover:opacity-100 opacity-100 transition-opacity duration-300">
             <AppointmentModal>
-              <Button className="glow-button w-full">
+              <Button className="glow-button w-full active:scale-95 transform transition-transform">
                 Book Service
               </Button>
             </AppointmentModal>
