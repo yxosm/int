@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from './ui/button'
 import { cn } from '@/lib/utils'
+import { useIsTouch } from "@/components/theme-provider"
 
 interface Review {
   author: string
@@ -66,18 +67,8 @@ const reviews = [
 
 export function ReviewCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [direction, setDirection] = useState(0)
   const [touchStart, setTouchStart] = useState<number | null>(null)
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
+  const { isTouchDevice } = useIsTouch()
 
   const slideVariants = {
     enter: (direction: number) => ({
@@ -102,15 +93,13 @@ export function ReviewCarousel() {
   }
 
   const paginate = (newDirection: number) => {
-    setDirection(newDirection)
-    setCurrentIndex((prevIndex) => {
-      let newIndex = prevIndex + newDirection
-      if (newIndex < 0) newIndex = reviews.length - 1
-      if (newIndex >= reviews.length) newIndex = 0
-      return newIndex
-    })
+    let newIndex = currentIndex + newDirection
+    if (newIndex < 0) newIndex = reviews.length - 1
+    if (newIndex >= reviews.length) newIndex = 0
+    setCurrentIndex(newIndex)
   }
 
+  // Touch event handlers
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.touches[0].clientX)
   }
@@ -131,18 +120,27 @@ export function ReviewCarousel() {
     setTouchStart(null)
   }
 
+  // Auto advance slides on desktop only
+  useEffect(() => {
+    if (!isTouchDevice) {
+      const timer = setInterval(() => {
+        paginate(1)
+      }, 5000)
+      return () => clearInterval(timer)
+    }
+  }, [currentIndex, isTouchDevice])
+
   return (
     <div 
-      className="relative overflow-hidden"
+      className="relative overflow-hidden touch-pan-y"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
       <div className="relative h-[400px] md:h-[300px]">
-        <AnimatePresence initial={false} custom={direction}>
+        <AnimatePresence initial={false}>
           <motion.div
             key={currentIndex}
-            custom={direction}
             variants={slideVariants}
             initial="enter"
             animate="center"
@@ -151,12 +149,11 @@ export function ReviewCarousel() {
               x: { type: "spring", stiffness: 300, damping: 30 },
               opacity: { duration: 0.2 }
             }}
-            drag={isMobile ? "x" : false}
+            drag={isTouchDevice ? "x" : false}
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={1}
             onDragEnd={(e, { offset, velocity }) => {
               const swipe = swipePower(offset.x, velocity.x)
-
               if (swipe < -swipeConfidenceThreshold) {
                 paginate(1)
               } else if (swipe > swipeConfidenceThreshold) {
@@ -206,45 +203,20 @@ export function ReviewCarousel() {
         </AnimatePresence>
       </div>
 
-      {/* Navigation Dots */}
       <div className="flex justify-center space-x-2 mt-6">
         {reviews.map((_, index) => (
           <button
             key={index}
-            onClick={() => {
-              setDirection(index > currentIndex ? 1 : -1)
-              setCurrentIndex(index)
-            }}
+            onClick={() => setCurrentIndex(index)}
             className={cn(
               "w-2 h-2 rounded-full transition-all duration-300",
               index === currentIndex
                 ? "bg-primary w-6"
                 : "bg-white/20 hover:bg-white/40"
             )}
+            aria-label={`Go to review ${index + 1}`}
           />
         ))}
-      </div>
-
-      {/* Navigation Buttons */}
-      <div className="absolute top-1/2 -translate-y-1/2 left-4">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="rounded-full bg-black/50 backdrop-blur-sm border border-white/10 hover:bg-white/10 hidden md:flex"
-          onClick={() => paginate(-1)}
-        >
-          <ChevronLeft className="h-4 w-4" />
-        </Button>
-      </div>
-      <div className="absolute top-1/2 -translate-y-1/2 right-4">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="rounded-full bg-black/50 backdrop-blur-sm border border-white/10 hover:bg-white/10 hidden md:flex"
-          onClick={() => paginate(1)}
-        >
-          <ChevronRight className="h-4 w-4" />
-        </Button>
       </div>
     </div>
   )
