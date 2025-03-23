@@ -447,56 +447,54 @@ export function AppointmentModal({ children }: { children: React.ReactNode }) {
   return (
     <Dialog onOpenChange={(open) => !open && resetForm()}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[600px] p-0 overflow-y-auto max-h-[90vh] bg-background border-border/50 shadow-xl">
-        <Tabs defaultValue="schedule" className="w-full">
-          <DialogHeader className="sticky top-0 z-10 backdrop-blur-md bg-background/95 px-6 pt-6 pb-2 border-b">
-            <DialogTitle className="text-2xl font-bold text-center">Schedule Service</DialogTitle>
-            <TabsList className="grid grid-cols-2 mt-4">
-              <TabsTrigger value="schedule" className="text-sm">
-                Schedule Online
-              </TabsTrigger>
-              <TabsTrigger value="call" className="text-sm">
-                Call Now
-              </TabsTrigger>
-            </TabsList>
-          </DialogHeader>
-          <TabsContent value="schedule" className="p-6 pt-2">
-            {renderContent()}
-          </TabsContent>
-          <TabsContent value="call" className="p-6 space-y-6">
-            <div className="flex items-start space-x-4">
-              <div className="bg-primary/10 p-3 rounded-full">
-                <Clock className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-medium">Operating Hours</h3>
-                <p className="text-sm text-muted-foreground">
-                  Mon-Fri: 7 AM–7 PM
-                  <br />
-                  Sat: 8 AM–4 PM
-                  <br />
-                  Sun: Closed
-                </p>
-              </div>
+      <DialogContent className="sm:max-w-[600px] p-0 bg-background border-border/50 shadow-xl overflow-hidden h-[90vh] sm:h-auto">
+        <div className="overflow-y-auto h-full scrollbar-thin">
+          <Tabs defaultValue="schedule" className="w-full">
+            <DialogHeader className="sticky top-0 z-10 backdrop-blur-md bg-background/95 px-6 pt-6 pb-2 border-b">
+              <DialogTitle className="text-2xl font-bold text-center">Schedule Service</DialogTitle>
+              <TabsList className="grid w-full grid-cols-2 mt-4">
+                <TabsTrigger value="schedule" className="text-sm py-3">Schedule Online</TabsTrigger>
+                <TabsTrigger value="call" className="text-sm py-3">Call Now</TabsTrigger>
+              </TabsList>
+            </DialogHeader>
+            <div className="px-6 py-4">
+              <TabsContent value="schedule" className="mt-0 focus-visible:outline-none focus-visible:ring-0">
+                {renderContent()}
+              </TabsContent>
+              <TabsContent value="call" className="space-y-6 mt-0">
+                <div className="flex items-start space-x-4">
+                  <div className="bg-primary/10 p-3 rounded-full flex-shrink-0">
+                    <Clock className="h-5 w-5 text-primary" />
+                  </div>
+                  <div className="flex-grow">
+                    <h3 className="font-medium">Operating Hours</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Mon-Fri: 7 AM–7 PM<br />
+                      Sat: 8 AM–4 PM<br />
+                      Sun: Closed
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="bg-primary/10 p-3 rounded-full flex-shrink-0">
+                    <Phone className="h-5 w-5 text-primary" />
+                  </div>
+                  <div className="flex-grow">
+                    <h3 className="font-medium">Contact</h3>
+                    <p className="font-semibold">(614) 649-1542</p>
+                  </div>
+                </div>
+                <div className="flex justify-center mt-8">
+                  <a href="tel:+16146491542" className="w-full sm:w-auto">
+                    <Button className="multi-gradient-button w-full sm:w-auto text-lg py-6">
+                      <Phone className="mr-2 h-5 w-5" /> Call Now
+                    </Button>
+                  </a>
+                </div>
+              </TabsContent>
             </div>
-            <div className="flex items-start space-x-4">
-              <div className="bg-primary/10 p-3 rounded-full">
-                <Phone className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-medium">Contact</h3>
-                <p className="font-semibold">(614) 649-1542</p>
-              </div>
-            </div>
-            <div className="flex justify-center mt-4">
-              <a href="tel:+16146491542">
-                <Button className="multi-gradient-button">
-                  <Phone className="mr-2 h-4 w-4" /> Call Now
-                </Button>
-              </a>
-            </div>
-          </TabsContent>
-        </Tabs>
+          </Tabs>
+        </div>
       </DialogContent>
     </Dialog>
   )
