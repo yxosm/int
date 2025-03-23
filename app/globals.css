@@ -1,6 +1,99 @@
+/* Base styles */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Mobile viewport fix */
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Mobile scrolling optimization */
+.modal-scrollable {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  touch-action: pan-y;
+}
+
+/* Mobile-friendly focus states */
+@media (max-width: 640px) {
+  :focus {
+    outline: none !important;
+  }
+  
+  input, select, textarea {
+    font-size: 16px !important; /* Prevents iOS zoom */
+  }
+
+  .touch-callout-none {
+    -webkit-touch-callout: none;
+  }
+}
+
+/* Button tap states for mobile */
+@media (hover: none) {
+  .hover\:scale-105:hover {
+    transform: none !important;
+  }
+
+  .hover\:shadow-lg:hover {
+    box-shadow: none !important;
+  }
+
+  .active\:scale-95:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Enhanced mobile scrollbar */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+/* Mobile modal styles */
+@media (max-width: 640px) {
+  .modal-mobile {
+    margin: 0;
+    max-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    border-radius: 0;
+  }
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 640px) {
+  button, 
+  [role="button"],
+  .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  a {
+    padding: 0.5rem;
+    margin: -0.5rem;
+  }
+}
 
 @layer base {
   :root {
