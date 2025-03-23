@@ -1,10 +1,17 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, Star } from "lucide-react"
+import React, { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Star, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Button } from './ui/button'
+import { cn } from '@/lib/utils'
+
+interface Review {
+  author: string
+  text: string
+  rating: number
+  date: string
+}
 
 const reviews = [
   {
@@ -58,116 +65,187 @@ const reviews = [
 ]
 
 export function ReviewCarousel() {
-  const [activeIndex, setActiveIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0)
-
-  const nextSlide = () => {
-    setDirection(1)
-    setActiveIndex((current) => (current === reviews.length - 1 ? 0 : current + 1))
-  }
-
-  const prevSlide = () => {
-    setDirection(-1)
-    setActiveIndex((current) => (current === 0 ? reviews.length - 1 : current - 1))
-  }
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide()
-    }, 5000)
-
-    return () => clearInterval(interval)
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  const variants = {
+  const slideVariants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 200 : -200,
-      opacity: 0,
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0
     }),
     center: {
+      zIndex: 1,
       x: 0,
-      opacity: 1,
+      opacity: 1
     },
     exit: (direction: number) => ({
-      x: direction < 0 ? 200 : -200,
-      opacity: 0,
-    }),
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0
+    })
+  }
+
+  const swipeConfidenceThreshold = 10000
+  const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity
+  }
+
+  const paginate = (newDirection: number) => {
+    setDirection(newDirection)
+    setCurrentIndex((prevIndex) => {
+      let newIndex = prevIndex + newDirection
+      if (newIndex < 0) newIndex = reviews.length - 1
+      if (newIndex >= reviews.length) newIndex = 0
+      return newIndex
+    })
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchStart) return
+
+    const currentTouch = e.touches[0].clientX
+    const diff = touchStart - currentTouch
+
+    if (Math.abs(diff) > 50) {
+      paginate(diff > 0 ? 1 : -1)
+      setTouchStart(null)
+    }
+  }
+
+  const handleTouchEnd = () => {
+    setTouchStart(null)
   }
 
   return (
-    <div className="relative">
-      <div className="p-8 md:p-12">
-        <div className="flex justify-center mb-6">
-          {[...Array(5)].map((_, i) => (
-            <Star key={i} className="h-6 w-6 text-white/80 fill-white/80" />
-          ))}
-        </div>
+    <div 
+      className="relative overflow-hidden"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      <div className="relative h-[400px] md:h-[300px]">
+        <AnimatePresence initial={false} custom={direction}>
+          <motion.div
+            key={currentIndex}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 300, damping: 30 },
+              opacity: { duration: 0.2 }
+            }}
+            drag={isMobile ? "x" : false}
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={1}
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipe = swipePower(offset.x, velocity.x)
 
-        <div className="relative h-[200px] overflow-hidden">
-          <AnimatePresence custom={direction} initial={false}>
-            <motion.blockquote
-              key={activeIndex}
-              custom={direction}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.5 }}
-              className="absolute inset-0 flex flex-col items-center justify-center"
-            >
-              <p className="text-xl md:text-2xl text-center mb-8 italic text-white/90">"{reviews[activeIndex].text}"</p>
-
-              <div className="flex items-center">
-                <Avatar className="h-12 w-12 mr-4 avatar-futuristic">
-                  <AvatarFallback className="text-white font-medium">
-                    {reviews[activeIndex].author
-                      .split(" ")
-                      .map((name) => name[0])
-                      .join("")}
-                  </AvatarFallback>
-                </Avatar>
-                <div>
-                  <div className="font-medium text-white">{reviews[activeIndex].author}</div>
-                  <div className="text-sm text-gray-400">{reviews[activeIndex].date}</div>
+              if (swipe < -swipeConfidenceThreshold) {
+                paginate(1)
+              } else if (swipe > swipeConfidenceThreshold) {
+                paginate(-1)
+              }
+            }}
+            className="absolute w-full h-full"
+          >
+            <div className="review-card-futuristic p-8 h-full">
+              <div className="flex flex-col h-full">
+                <div className="flex items-center space-x-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={cn(
+                        "h-5 w-5",
+                        i < reviews[currentIndex].rating
+                          ? "text-yellow-500 fill-yellow-500"
+                          : "text-gray-500"
+                      )}
+                    />
+                  ))}
                 </div>
+                <blockquote className="flex-grow mb-6">
+                  <p className="text-lg md:text-xl leading-relaxed text-gray-200">
+                    "{reviews[currentIndex].text}"
+                  </p>
+                </blockquote>
+                <footer>
+                  <div className="flex items-center">
+                    <div className="avatar-futuristic w-12 h-12 flex items-center justify-center text-lg font-semibold">
+                      {reviews[currentIndex].author.split(' ').map(n => n[0]).join('')}
+                    </div>
+                    <div className="ml-4">
+                      <cite className="font-semibold not-italic">
+                        {reviews[currentIndex].author}
+                      </cite>
+                      <div className="text-sm text-gray-400">
+                        {reviews[currentIndex].date}
+                      </div>
+                    </div>
+                  </div>
+                </footer>
               </div>
-            </motion.blockquote>
-          </AnimatePresence>
-        </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
-      <div className="flex justify-center mt-6 space-x-2">
+      {/* Navigation Dots */}
+      <div className="flex justify-center space-x-2 mt-6">
         {reviews.map((_, index) => (
           <button
             key={index}
-            onClick={() => setActiveIndex(index)}
-            className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-              index === activeIndex ? "bg-white" : "bg-white/20"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
+            onClick={() => {
+              setDirection(index > currentIndex ? 1 : -1)
+              setCurrentIndex(index)
+            }}
+            className={cn(
+              "w-2 h-2 rounded-full transition-all duration-300",
+              index === currentIndex
+                ? "bg-primary w-6"
+                : "bg-white/20 hover:bg-white/40"
+            )}
           />
         ))}
       </div>
 
-      <Button
-        variant="ghost"
-        size="icon"
-        className="absolute -left-12 top-1/2 -translate-y-1/2 hidden md:flex bg-white/5 backdrop-blur-sm hover:bg-white/10 text-white"
-        onClick={prevSlide}
-      >
-        <ChevronLeft className="h-6 w-6" />
-        <span className="sr-only">Previous review</span>
-      </Button>
-
-      <Button
-        variant="ghost"
-        size="icon"
-        className="absolute -right-12 top-1/2 -translate-y-1/2 hidden md:flex bg-white/5 backdrop-blur-sm hover:bg-white/10 text-white"
-        onClick={nextSlide}
-      >
-        <ChevronRight className="h-6 w-6" />
-        <span className="sr-only">Next review</span>
-      </Button>
+      {/* Navigation Buttons */}
+      <div className="absolute top-1/2 -translate-y-1/2 left-4">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="rounded-full bg-black/50 backdrop-blur-sm border border-white/10 hover:bg-white/10 hidden md:flex"
+          onClick={() => paginate(-1)}
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
+      </div>
+      <div className="absolute top-1/2 -translate-y-1/2 right-4">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="rounded-full bg-black/50 backdrop-blur-sm border border-white/10 hover:bg-white/10 hidden md:flex"
+          onClick={() => paginate(1)}
+        >
+          <ChevronRight className="h-4 w-4" />
+        </Button>
+      </div>
     </div>
   )
 }
