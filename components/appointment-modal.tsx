@@ -448,7 +448,7 @@ export function AppointmentModal({ children }: { children: React.ReactNode }) {
     <Dialog onOpenChange={(open) => !open && resetForm()}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[600px] p-0 bg-background border-border/50 shadow-xl overflow-hidden h-[90vh] sm:h-auto">
-        <div className="overflow-y-auto h-full scrollbar-thin">
+        <div className="overflow-y-auto h-full scrollbar-thin overscroll-contain -webkit-overflow-scrolling-touch">
           <Tabs defaultValue="schedule" className="w-full">
             <DialogHeader className="sticky top-0 z-10 backdrop-blur-md bg-background/95 px-6 pt-6 pb-2 border-b">
               <DialogTitle className="text-2xl font-bold text-center">Schedule Service</DialogTitle>
